@@ -1,10 +1,11 @@
-import { StatusBar, StyleSheet, Text, View } from "react-native";
+import { Appearance, Button, StatusBar, StyleSheet, Text, View } from 'react-native';
 
 export default function Events() {
+	//const colors = useTheme().colors;
+
 	return (
-		<View style={styles.container}>
+		<View style={{...styles.container}}>
 			<Text>Open events screen</Text>
-			<StatusBar style="auto" />
 		</View>
 	);
 }
