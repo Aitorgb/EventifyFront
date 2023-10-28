@@ -2,13 +2,12 @@ import { FormControl, Input as InputNative, useTheme } from 'native-base';
 import { StyleSheet } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
-
 export const GooglePlacesInput = ({
 	placeholder,
 	size = 'md',
 	handleBlur,
 	handleChange,
-	isInvalid,
+	error,
 	errorMessage,
 	keyboardType,
 	label,
@@ -19,12 +18,12 @@ export const GooglePlacesInput = ({
 	} = useTheme();
 
 	return (
-		<FormControl isInvalid={isInvalid} style={styles.container}>
+		<FormControl isInvalid={error} style={styles.container}>
 			{label && <FormControl.Label>{label}</FormControl.Label>}
 			<GooglePlacesAutocomplete
 				styles={{
 					textInputContainer: {
-						
+
 					},
 					textInput: {
 						height: 35,
@@ -50,13 +49,13 @@ export const GooglePlacesInput = ({
 					handleChange(response)
 				}}
 				query={{
-					key: 'AIzaSyBepYCvhqgzWxjf1wTut7m3ZrhH7GT6EQY',
+					key: process.env.REACT_APP_GOOGLE_API_KEY,
 					language: 'es',
 				}}
 
 			/>
 
-			{isInvalid &&
+			{error &&
 				errorMessage && (
 					<FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
 						{errorMessage}

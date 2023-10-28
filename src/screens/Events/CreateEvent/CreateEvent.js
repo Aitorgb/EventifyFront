@@ -12,6 +12,7 @@ import * as Yup from 'yup';
 const createSchema = Yup.object().shape({
 	name: Yup.string().required(),
 	description: Yup.string().required(),
+	duration: Yup.number().required().min(1),
 	location: Yup.object().required(),
 	date: Yup.date().required()
   });
@@ -32,13 +33,14 @@ export default function CreateEvent() {
 				validationSchema={createSchema}
 				onSubmit={(values) => console.log(values)}
 			>
-				{({ handleChange, handleBlur, handleSubmit, setFieldValue, values }) => {
+				{({ handleChange, handleBlur, handleSubmit, setFieldValue, values, touched, errors }) => {
 					return (
 						<ScrollView style={styles.container}>
 
 							<Input
 								handleChange={handleChange('name')}
 								handleBlur={handleBlur('name')}
+								error={!!(touched.name && errors.name)}
 								value={values.name}
 								label="Name"
 							/>
@@ -46,11 +48,13 @@ export default function CreateEvent() {
 								handleChange={handleChange('description')}
 								handleBlur={handleBlur('description')}
 								value={values.description}
+								error={!!(touched.description && errors.description)}
 								label="Description"
 							/>
 							<Input
 								handleChange={handleChange('duration')}
 								handleBlur={handleBlur('duration')}
+								error={!!(touched.duration && errors.duration)}
 								value={values.duration}
 								label="Duration"
 								keyboardType="number-pad"

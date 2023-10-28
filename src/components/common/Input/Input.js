@@ -7,7 +7,7 @@ export const Input = ({
 	size = 'md',
 	handleBlur,
 	handleChange,
-	isInvalid,
+	error,
 	errorMessage,
     keyboardType,
 	label,
@@ -18,7 +18,7 @@ export const Input = ({
       } = useTheme();
    
 	return (
-		<FormControl isInvalid={isInvalid} style={styles.container}>
+		<FormControl isInvalid={error} style={styles.container}>
 			{label && <FormControl.Label>{label}</FormControl.Label>}
 			<InputNative
                 style={{...styles.input, backgroundColor: colors.muted[50]}}
@@ -30,7 +30,7 @@ export const Input = ({
                 keyboardType={keyboardType}
 				placeholder={placeholder}
 			/>
-			{isInvalid &&
+			{error &&
 			errorMessage && (
 				<FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
 					{errorMessage}

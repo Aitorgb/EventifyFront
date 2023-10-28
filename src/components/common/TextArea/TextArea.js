@@ -7,15 +7,15 @@ export const TextArea = ({
 	size = 'md',
 	handleBlur,
 	handleChange,
-	isInvalid,
+	error,
 	errorMessage,
 	label,
 	value
 }) => {
 	const { colors } = useTheme();
-
+console.log(error, 'error')
 	return (
-		<FormControl isInvalid={isInvalid}>
+		<FormControl>
 			{label && <FormControl.Label>{label}</FormControl.Label>}
 			<TextAreaNative
 				style={{ ...styles.input, backgroundColor: colors.muted[50] }}
@@ -23,11 +23,12 @@ export const TextArea = ({
 				h={height}
 				onChangeText={handleChange}
 				onBlur={handleBlur}
+				isInvalid={error}
 				value={value}
 				size={size}
 				placeholder={placeholder}
 			/>
-			{isInvalid &&
+			{error &&
 			errorMessage && (
 				<FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
 					{errorMessage}
