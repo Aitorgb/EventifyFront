@@ -13,7 +13,7 @@ export const TextArea = ({
 	value
 }) => {
 	const { colors } = useTheme();
-console.log(error, 'error')
+
 	return (
 		<FormControl>
 			{label && <FormControl.Label>{label}</FormControl.Label>}

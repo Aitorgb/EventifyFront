@@ -61,6 +61,7 @@ export default function CreateEvent() {
 							/>
 							<GooglePlacesInput
 								handleChange={(date, name) => setFieldValue('location', date)}
+								error={!!(touched.location && errors.location)}
 								value={values.location}
 								label="Location"
 							/>

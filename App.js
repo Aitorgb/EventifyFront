@@ -20,28 +20,45 @@ export default function App() {
 	return (
 		<React.Fragment>
 			<GluestackUIProvider config={config}>
-				<NavigationContainer ref={navigationRef} theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
+				<NavigationContainer
+					ref={navigationRef}
+					theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
 					<NativeBaseProvider>
 						<Stack.Navigator
 							initialRouteName="Home"
 							screenOptions={{
-								headerMode: 'screen'
+								headerMode: 'float',
+								headerBackTitleVisible: false,
+								headerTintColor: '#E74C3C',
+								headerTitleStyle: {
+									fontWeight: 'bold',
+								},
 							}}
 						>
-							<Stack.Screen
-								name="CreateEvent"
-								component={CreateEvent}
-								options={{
-									title: 'Create Event'
+							<Stack.Group
+								screenOptions={{ 
+									headerTransparent: true,
+									cardStyle: {
+										paddingTop: 80,
+									}
+									//presentation: 'modal'
 								}}
-							/>
-							<Stack.Screen
-								name="Home"
-								options={{
-									title: 'Home'
-								}}
-								component={EventList}
-							/>
+							>
+								<Stack.Screen
+									name="CreateEvent"
+									component={CreateEvent}
+									options={{
+										title: 'Create Event',
+									}}
+								/>
+								<Stack.Screen
+									name="Home"
+									options={{
+										title: 'Home',
+									}}
+									component={EventList}
+								/>
+							</Stack.Group>
 						</Stack.Navigator>
 						<Navbar navigation={navigationRef} />
 					</NativeBaseProvider>
